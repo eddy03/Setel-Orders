@@ -7,6 +7,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: {
       type: DataTypes.STRING(1000)
+    },
+    paymentId: {
+      type: DataTypes.INTEGER()
     }
   }
 
