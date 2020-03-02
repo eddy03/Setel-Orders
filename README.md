@@ -2,10 +2,10 @@
 
 ##### How to
 - Clone this repo
-- run `npm run init`
+- copy `.env.example` to `.env` and change the value inside according to your environment
 - run `npm start`
 
-##### Requirements
-- Redis
+#### Requirement
+- MySQL
 
 Copyright (c) Dontpushpush
