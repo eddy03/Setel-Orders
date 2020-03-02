@@ -2,14 +2,14 @@
 
 module.exports = (sequelize, DataTypes) => {
   const SCHEMA = {
-    uuid: {
-      type: DataTypes.STRING(255)
-    },
     description: {
       type: DataTypes.STRING(1000)
     },
     paymentId: {
       type: DataTypes.INTEGER()
+    },
+    status: {
+      type: DataTypes.ENUM('success', 'failed', 'canceled')
     }
   }
 
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   const refUserRoles = sequelize.define('orders', SCHEMA, OPTIONS)
 
   refUserRoles.associate = models => {
-    refUserRoles.belongsTo(models.accounts, { as: 'User' })
+    refUserRoles.belongsTo(models.accounts, { as: 'Account' })
   }
 
   return refUserRoles

@@ -9,24 +9,24 @@ module.exports = app => {
 
   authCtrl.login = async (req, res) => {
     try {
-      const {email, password} = req.body
+      const { email, password } = req.body
 
       if (_.isEmpty(_.trim(email))) {
-        return res.status(400).json({msg: 'Email is required'})
+        return res.status(400).json({ msg: 'Email is required' })
       } else if (_.isEmpty(password)) {
-        return res.status(400).json({msg: 'Password is required'})
+        return res.status(400).json({ msg: 'Password is required' })
       }
 
-      const account = await accountsModel.findOne({where: {email: email}})
+      const account = await accountsModel.findOne({ where: { email: email } })
 
       if (_.isEmpty(account)) {
-        return res.status(404).json({msg: 'No matching account'})
+        return res.status(404).json({ msg: 'No matching account' })
       }
 
       try {
         await bcrypt.compare(password, account.password)
       } catch (err) {
-        return res.status(404).json({msg: 'No matching account'})
+        return res.status(404).json({ msg: 'No matching account' })
       }
 
       const response = _.pick(account, ['id', 'email'])
@@ -34,7 +34,7 @@ module.exports = app => {
 
       res.json(response)
     } catch (err) {
-      res.status(500).json({msg: 'There is an error'})
+      res.status(500).json({ msg: 'There is an error' })
     }
   }
 

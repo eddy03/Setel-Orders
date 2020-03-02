@@ -1,5 +1,5 @@
 module.exports = app => {
-  let modelMethod = app.DB.orders
+  const modelMethod = app.DB.orders
 
   return modelMethod
 }

@@ -4,6 +4,7 @@ module.exports = app => {
   const ordersCtrl = require('./controllers/orders')(app)
 
   const isValidMiddleware = require('./middleware/is-valid')(app)
+  const getOrderMiddleware = require('./middleware/get-order')(app)
 
   app.get('/health', healthCtrl.check)
 
@@ -14,6 +15,6 @@ module.exports = app => {
     .post(isValidMiddleware, ordersCtrl.newOrders)
 
   app.route('/orders/:orderId')
-    .get(isValidMiddleware, ordersCtrl.getOrder)
-    .delete(isValidMiddleware, ordersCtrl.cancelOrder)
+    .get(isValidMiddleware, getOrderMiddleware, ordersCtrl.getOrder)
+    .delete(isValidMiddleware, getOrderMiddleware, ordersCtrl.cancelOrder)
 }

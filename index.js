@@ -29,7 +29,7 @@ const DB = require('./db');
 
     app.DB = db
 
-    app.DB.sequelize.sync({force: true})
+    app.DB.sequelize.sync({ force: false })
     await app.DB.accounts.create({
       email: 'eddytech03@gmail.com',
       password: await bcrypt.hash('abcd1234', 10)
